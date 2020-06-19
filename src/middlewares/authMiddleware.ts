@@ -1,23 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
+import { celebrate, Joi } from 'celebrate';
 
 import { verifyAccessToken } from '../utils/jwt';
 
+const tokenMiddleware = celebrate({
+  headers: Joi.object({
+    authorization: Joi.string()
+      .required()
+      .regex(/Bearer .+/),
+  }).unknown(),
+});
+
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const authorization = req.headers.authorization;
-
-  if (!authorization) {
-    return res.status(401).send({
-      error: 'Access token not given.',
-    });
-  }
-
-  const [bearer, accessToken] = authorization.split(' ');
-
-  if (bearer !== 'Bearer') {
-    return res.status(401).send({
-      error: 'Access token must be a valid bearer token.',
-    });
-  }
+  const authorization = req.headers.authorization as string;
+  const accessToken = authorization.split(' ')[1];
 
   try {
     res.locals.user = verifyAccessToken(accessToken);
@@ -27,4 +23,4 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export default authMiddleware;
+export default [tokenMiddleware, authMiddleware];

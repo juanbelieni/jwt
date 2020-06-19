@@ -12,7 +12,9 @@ export const genAccessToken = (user: User) => {
   const { id, name, email } = user;
   const tokenPayload = { id, name, email };
 
-  const accessToken = jwt.sign(tokenPayload, JWT_SECRET_KEY);
+  const accessToken = jwt.sign(tokenPayload, JWT_SECRET_KEY, {
+    expiresIn: '1h',
+  });
   return accessToken;
 };
 

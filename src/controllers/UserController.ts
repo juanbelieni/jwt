@@ -59,7 +59,6 @@ export default {
 
   async index(req: Request, res: Response) {
     const users = await knex('users').select('name', 'email');
-
     return res.send(users);
   },
 };
