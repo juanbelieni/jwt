@@ -1,0 +1,36 @@
+[author]
+name = "Juan Belieni"
+email = "juanbelieni@gmail.com"
+twitter = "juanbelieni"
+
+[project]
+title = "JWT with TypeScript"
+description = "A API that authenticates users with JSON Web Token (JWT)."
+screenshot = ""
+features = [
+  "Register and login a user with email and password.",
+  "Show all users for authenticated users."
+]
+instalation = '''
+```bash
+# Clone
+$ git clone http://github.com/juanbelieni/jwt.git
+
+# Navigate to folder
+$ cd jwt
+
+# Install with NPM
+$ npm install
+# or Yarn
+$ yarn
+```
+'''
+usage = '''
+```bash
+$ yarn start
+```
+After starting, you can access these routes:
+- `POST /register`
+- `POST /login`
+- `GET /users`
+'''

@@ -15,10 +15,11 @@ export const genAccessToken = (user: User) => {
   const accessToken = jwt.sign(tokenPayload, JWT_SECRET_KEY, {
     expiresIn: '1h',
   });
+
   return accessToken;
 };
 
 export const verifyAccessToken = (accessToken: string) => {
-  const tokenPayload = jwt.verify(accessToken, JWT_SECRET_KEY) as User;
+  const tokenPayload = jwt.verify(accessToken, JWT_SECRET_KEY);
   return tokenPayload;
 };
