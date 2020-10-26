@@ -2,8 +2,6 @@
 
 A API that authenticates users with JSON Web Token (JWT).
 
-![Screenshot]()
-
 ## 🎯 Features
 
 - Register and login a user with email and password.
